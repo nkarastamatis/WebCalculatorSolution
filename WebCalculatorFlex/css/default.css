@@ -1,0 +1,15 @@
+﻿body {
+    background-color: blue;
+}
+
+#btns {
+    display: -ms-flexbox;
+    width: 300px;
+    border: 1px solid red;
+    -ms-flex-flow: row wrap;
+    -ms-flex-wrap:wrap;
+}
+
+    #btns button {
+        -ms-flex: 50px 1;
+    }
