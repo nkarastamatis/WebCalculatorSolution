@@ -59,6 +59,8 @@
   <ItemGroup>
     <Content Include="CalculatorLibrary.js" />
     <Content Include="CalculatorTests.html" />
+    <Content Include="Content\defaultFlex.css" />
+    <Content Include="Content\default.css" />
     <Content Include="Content\qunit.css" />
     <Content Include="default.html" />
     <Content Include="Scripts\qunit.js" />

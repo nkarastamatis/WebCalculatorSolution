@@ -61,7 +61,7 @@
     <Content Include="CalculatorTests.html" />
     <Content Include="Content\qunit.css" />
     <Content Include="css\default.css" />
-    <Content Include="default.html" />
+    <Content Include="default2.html" />
     <Content Include="Scripts\qunit.js" />
     <Content Include="Scripts\tests.js" />
     <Content Include="Web.config" />
