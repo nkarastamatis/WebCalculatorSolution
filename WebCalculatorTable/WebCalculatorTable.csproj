@@ -58,12 +58,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CalculatorLibrary.js" />
+    <Content Include="CalculatorTests.html" />
     <Content Include="Content\default.css" />
     <Content Include="Content\qunit.css" />
     <Content Include="default.html" />
     <Content Include="Images\ContosoLogo.jpg" />
+    <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.0.3.js" />
+    <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\qunit.js" />
     <Content Include="Scripts\tests.js" />
+    <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="Scripts\jquery-2.0.3.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

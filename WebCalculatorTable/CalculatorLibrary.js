@@ -1,76 +1,87 @@
-﻿var txtInput;
-var txtResult;
-var originalBtnBackground;
-var pressBtnBackground;
+﻿/// <reference pa th="Scripts/_references.js" />
 
-function initialize() {
-    txtInput = document.getElementById('txtInput');
-    txtResult = document.getElementById('txtResult');
+(function () {
+    this.calculatorNamespace = this.calculatorNamespace || {};
+    var ns = this.calculatorNamespace;
 
-    originalBtnBackground = document.getElementById('btnPlus').style.background;
-    pressBtnBackground = 'green';
+    var originalBtnBackground;
+    var pressBtnBackground;
 
-    document.getElementById('btnPlus').addEventListener('click', plusClick, false);
-    document.getElementById('btnMinus').addEventListener('click', minusClick, false);
-    document.getElementById('btnMultiply').addEventListener('click', multiplyClick, false);
-    document.getElementById('btnDivide').addEventListener('click', divideClick, false);
-    document.getElementById('btnClearEntry').addEventListener('click', clearEntry, false);
-    document.getElementById('btnClear').addEventListener('click', clear, false);
-    document.getElementById('btnDecimal').addEventListener('click', decimalClick, false);
+    function initialize() {
+        var calculator = new ns.Calculator();
 
-    document.getElementById('btns').addEventListener('mousedown', btnClickDown, false);
-    document.getElementById('btns').addEventListener('mouseup', btnClickUp, false);
+        originalBtnBackground = document.getElementById('btnPlus').style.background;
+        pressBtnBackground = 'green';
 
-    for (var i = 0; i < 10; i++) {
-        document.getElementById('btn' + i).addEventListener('click', numberClick, false);
+        $('#btnPlus').on('click', calculator.plusClick);
+        $('#btnMinus').on('click', calculator.minusClick);
+        $('#btnMultiply').on('click', calculator.multiplyClick);
+        $('#btnDivide').on('click', calculator.divideClick);
+        $('#btnClearEntry').on('click', calculator.clearEntry);
+        $('#btnClear').on('click', calculator.clear);
+        $('#btnDecimal').on('click', calculator.decimalClick);
+
+        $('#btns').on('mousedown', calculator.btnClickDown).on('mouseup', calculator.btnClickUp);
+        $('button[id^="btnNumber"]').on('click', calculator.numberClick);
+
+        calculator.clear();
     }
 
-    clear();
-}
+    ns.Calculator = (function () {
 
-function btnClickDown(e) {
-    if (e.target.nodeName === 'BUTTON')
-        e.target.style.background = pressBtnBackground;
-}
-function btnClickUp(e) {
-    if (e.target.nodeName === 'BUTTON')
-        e.target.style.background = originalBtnBackground;
-}
-function numberClick() {
-    txtInput.value = txtInput.value == '0' ?
-        this.innerText : txtInput.value + this.innerText;
-}
+        function Calculator() {
+            // Calculator constructor function
+        }
 
-function decimalClick() {
-    txtInput.value = txtInput.value.indexOf('.') != -1 ?
-        txtInput.value : txtInput.value + this.innerText;
-}
+        Calculator.prototype.btnClickDown = function (e) {
+            if (e.target.nodeName === 'BUTTON')
+                e.target.style.background = pressBtnBackground;
+        }
+        Calculator.prototype.btnClickUp = function (e) {
+            if (e.target.nodeName === 'BUTTON')
+                e.target.style.background = originalBtnBackground;
+        }
 
-function plusClick() {
-    txtResult.value = Number(txtResult.value) + Number(txtInput.value);
-    clearEntry();
-}
+        Calculator.prototype.numberClick = function () {
+            $('#txtInput').val($('#txtInput').val() == 0 ?
+                $(this).text() : $('#txtInput').val() + $(this).text());
+        }
 
-function minusClick() {
-    txtResult.value = Number(txtResult.value) - Number(txtInput.value);
-    clearEntry();
-}
+        Calculator.prototype.decimalClick = function () {
+            $('#txtInput').val($('#txtInput').val().indexOf('.') != -1 ?
+                $('#txtInput').val() : $('#txtInput').val() + $(this).text());
+        }
 
-function multiplyClick() {
-    txtResult.value = Number(txtResult.value) * Number(txtInput.value);
-    clearEntry();
-}
+        Calculator.prototype.plusClick = function () {
+            $('#txtResult').val(Number($('#txtResult').val()) + Number($('#txtInput').val()));
+            Calculator.prototype.clearEntry();
+        }
 
-function divideClick() {
-    txtResult.value = Number(txtResult.value) / Number(txtInput.value);
-    clearEntry();
-}
+        Calculator.prototype.minusClick = function () {
+            $('#txtResult').val(Number($('#txtResult').val()) - Number($('#txtInput').val()));
+            Calculator.prototype.clearEntry();
+        }
 
-function clearEntry() {
-    txtInput.value = '0';
-}
+        Calculator.prototype.multiplyClick = function () {
+            $('#txtResult').val(Number($('#txtResult').val()) * Number($('#txtInput').val()));
+            Calculator.prototype.clearEntry();
+        }
 
-function clear() {
-    txtInput.value = '0';
-    txtResult.value = '0';
-}
+        Calculator.prototype.divideClick = function () {
+            $('#txtResult').val(Number($('#txtResult').val()) / Number($('#txtInput').val()));
+            Calculator.prototype.clearEntry();
+        }
+
+        Calculator.prototype.clearEntry = function () {
+            $('#txtInput').val('0');
+        }
+
+        Calculator.prototype.clear = function () {
+            $('#txtInput').val('0');
+            $('#txtResult').val('0');
+        }
+
+        return Calculator;
+    }());
+
+})();
